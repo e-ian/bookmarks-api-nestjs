@@ -49,9 +49,10 @@ export class AuthService {
         if (!user)
             throw new ForbiddenException(
         'Credentials incorrect');
-
+        
+        //  compare password
         const pwMatches = await argon.verify(user.hash, dto.password);
-
+        // if password incorrect, throw exception
         if (!pwMatches)
                 throw new ForbiddenException(
             'Credentials incorrect',
@@ -60,9 +61,5 @@ export class AuthService {
         delete user.hash;
 
         return user;
-
-        //  compare password
-        // if password incorrect, throw exception
-        return 'I have signed in'
     }
 }
