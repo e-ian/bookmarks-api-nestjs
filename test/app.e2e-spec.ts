@@ -200,68 +200,70 @@ describe('App e2e', () => {
       })
     });
 
-    // describe('Get bookmarks', () => {
-    //   it('should get bookmarks', () => {
-    //     return pactum
-    //         .spec()
-    //         .get(
-    //           '/bookmarks',
-    //         ).withHeaders({
-    //           Authorization: 'Bearer $S{userAt}',
-    //         })
-    //         .expectStatus(200)
-    //         .expectJsonLength(1);
-    //   })
-    // });
+    describe('Get bookmarks', () => {
+      it('should get bookmarks', () => {
+        return pactum
+            .spec()
+            .get(
+              '/bookmarks',
+            ).withHeaders({
+              Authorization: 'Bearer $S{userAt}',
+            })
+            .expectStatus(200)
+            .expectJsonLength(1)
+            .inspect()
+      })
+    });
 
-    // describe('Get bookmark by id', () => {
-    //   it('should get bookmark by id', () => {
-    //     return pactum
-    //         .spec()
-    //         .get(
-    //           '/bookmarks/{id}')
-    //           .withPathParams('id', '$S{bookmarkId}')
-    //           .withHeaders({
-    //           Authorization: 'Bearer $S{userAt}',
-    //         })
-    //         .expectStatus(200)
-    //         .expectBodyContains('$S{bookmarkId}')
-    //   })
-    // });
+    describe('Get bookmark by id', () => {
+      it('should get bookmark by id', () => {
+        return pactum
+            .spec()
+            .get(
+              '/bookmarks/{id}')
+              .withPathParams('id', '$S{bookmarkId}')
+              .withHeaders({
+              Authorization: 'Bearer $S{userAt}',
+            })
+            .expectStatus(200)
+            .expectBodyContains('$S{bookmarkId}')
+            .inspect()
+      })
+    });
 
-    // describe('Edit bookmark by id', () => {
-    //   const dto: EditBookmarkDto = {
-    //     title: 'K8s for beginners',
-    //     description: 'Learn how to use k8s'
-    //   }
-    //   it('should edit bookmark by id', () => {
-    //     return pactum
-    //         .spec()
-    //         .patch(
-    //           '/bookmarks/{id}')
-    //           .withPathParams('id', '$S{bookmarkId}')
-    //           .withBody(dto)
-    //           .withHeaders({
-    //           Authorization: 'Bearer $S{userAt}',
-    //         })
-    //         .expectStatus(200)
-    //         .expectBodyContains(dto.title)
-    //         .expectBodyContains(dto.description)
-    //   })
-    // });
+    describe('Edit bookmark by id', () => {
+      const dto: EditBookmarkDto = {
+        title: 'K8s for beginners',
+        description: 'Learn how to use k8s'
+      }
+      it('should edit bookmark by id', () => {
+        return pactum
+            .spec()
+            .patch(
+              '/bookmarks/{id}')
+              .withPathParams('id', '$S{bookmarkId}')
+              .withHeaders({
+              Authorization: 'Bearer $S{userAt}',
+            })
+            .withBody(dto)
+            .expectStatus(200)
+            .expectBodyContains(dto.title)
+            .expectBodyContains(dto.description)
+      })
+    });
 
-    // describe('Delete bookmark by id', () => {
-    //   it('should delete bookmark by id', () => {
-    //     return pactum
-    //         .spec()
-    //         .delete(
-    //           '/bookmarks/{id}')
-    //           .withPathParams('id', '$S{bookmarkId}')
-    //           .withHeaders({
-    //           Authorization: 'Bearer $S{userAt}',
-    //         })
-    //         .expectStatus(204)
-      // });
+    describe('Delete bookmark by id', () => {
+      it('should delete bookmark by id', () => {
+        return pactum
+            .spec()
+            .delete(
+              '/bookmarks/{id}')
+              .withPathParams('id', '$S{bookmarkId}')
+              .withHeaders({
+              Authorization: 'Bearer $S{userAt}',
+            })
+            .expectStatus(204)
+      });
 
       it('should get empty bookmark', () => {
         return pactum
@@ -271,10 +273,10 @@ describe('App e2e', () => {
             ).withHeaders({
               Authorization: 'Bearer $S{userAt}',
             })
-            .expectStatus(200)
+            .expectStatus(204)
             .expectJsonLength(0);
 
       }) 
     });
-  // });
+  });
 });
