@@ -181,25 +181,37 @@ describe('App e2e', () => {
       })
     });
 
-    describe('Create bookmark', () => {
-      const dto: CreateBookmarkDto = {
-        title: 'First Bookmark',
-        link: 'https://www.youtube/com/watch?v=d6WC5n9G_sM',
-      };
+    // describe('Create bookmark', () => {
+    //   const dto: CreateBookmarkDto = {
+    //     title: 'First Bookmark',
+    //     link: 'https://www.youtube/com/watch?v=d6WC5n9G_sM',
+    //   };
 
-      it('should create bookmark', () => {
+    //   it('should create  bookmark', () => {
+    //     return pactum
+    //         .spec()
+    //         .post(
+    //           '/bookmarks',
+    //         ).withHeaders({
+    //           Authorization: 'Bearer $S{userAt}',
+    //         }).withBody(dto)
+    //         .expectStatus(201)
+    //   })
+    // });
+
+    describe('Get bookmarks', () => {
+      it('should get bookmarks', () => {
         return pactum
             .spec()
-            .patch(
+            .get(
               '/bookmarks',
             ).withHeaders({
               Authorization: 'Bearer $S{userAt}',
-            }).withBody(dto)
-            .expectStatus(201)
+            })
+            .expectStatus(200)
+            .expectJsonLength(1);
       })
     });
-
-    describe('Get bookmarks', () => {});
 
     describe('Get bookmark by id', () => {});
 

@@ -21,12 +21,25 @@ export class BookmarkService {
     }
 
 
-    createBookmark(userId: number, dto: CreateBookmarkDto){
-
-    }
+    // async createBookmark(
+    //     userId: number,
+    //     dto: CreateBookmarkDto
+    //     ){
+    //     const bookmark = await this.prisma.bookmark.create({
+    //         data: {
+    //             userId,
+    //             ...dto,
+    //         },
+    //     });
+    //     return bookmark;
+    // }
 
     
-    editBookmarkById(userId: number,  bookmarkId: number, dto: EditBookmarkDto){
+    editBookmarkById(
+        userId: number,  
+        bookmarkId: number, 
+        dto: EditBookmarkDto){
+            
 
     }
 
