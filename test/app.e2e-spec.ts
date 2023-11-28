@@ -181,23 +181,24 @@ describe('App e2e', () => {
       })
     });
 
-    // describe('Create bookmark', () => {
-    //   const dto: CreateBookmarkDto = {
-    //     title: 'First Bookmark',
-    //     link: 'https://www.youtube/com/watch?v=d6WC5n9G_sM',
-    //   };
+    describe('Create bookmark', () => {
+      const dto: CreateBookmarkDto = {
+        title: 'First Bookmark',
+        link: 'https://www.youtube/com/watch?v=d6WC5n9G_sM',
+      };
 
-    //   it('should create  bookmark', () => {
-    //     return pactum
-    //         .spec()
-    //         .post(
-    //           '/bookmarks',
-    //         ).withHeaders({
-    //           Authorization: 'Bearer $S{userAt}',
-    //         }).withBody(dto)
-    //         .expectStatus(201)
-    //   })
-    // });
+      it('should create  bookmark', () => {
+        return pactum
+            .spec()
+            .post(
+              '/bookmarks',
+            ).withHeaders({
+              Authorization: 'Bearer $S{userAt}',
+            }).withBody(dto)
+            .expectStatus(201)
+            .stores('bookmarkId', 'id')
+      })
+    });
 
     describe('Get bookmarks', () => {
       it('should get bookmarks', () => {
@@ -213,7 +214,20 @@ describe('App e2e', () => {
       })
     });
 
-    describe('Get bookmark by id', () => {});
+    describe('Get bookmark by id', () => {
+      it('should get bookmark by id', () => {
+        return pactum
+            .spec()
+            .get(
+              '/bookmarks/{id}')
+              .withPathParams('id', '$S{bookmarkId}')
+              .withHeaders({
+              Authorization: 'Bearer $S{userAt}',
+            })
+            .expectStatus(200)
+            .expectBodyContains('$S{bookmarkId}')
+      })
+    });
 
     describe('Edit bookmark by id', () => {});
 
