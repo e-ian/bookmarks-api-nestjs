@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsOptional, IsString } from "class-validator"
 
 
-export class createBookmarkDto {
+export class CreateBookmarkDto {
     @IsString()
     @IsNotEmpty()
     title: string
