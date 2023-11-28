@@ -29,16 +29,16 @@ export class BookmarkController {
         )
     }
 
-    // @Post()
-    // createBookmark(
-    //     @GetUser('id') userId: number,
-    //     @Body() dto: CreateBookmarkDto,
-    // ){
-    //     return this.bookmarkService.createBookmark(
-    //         userId,
-    //         dto
-    //     );
-    // }
+    @Post()
+    createBookmark(
+        @GetUser('id') userId: number,
+        @Body() dto: CreateBookmarkDto,
+    ){
+        return this.bookmarkService.createBookmark(
+            userId,
+            dto
+        );
+    }
 
     @Patch('id')
     editBookmarkById(
