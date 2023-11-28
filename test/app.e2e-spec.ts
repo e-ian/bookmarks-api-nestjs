@@ -5,7 +5,7 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { PrismaService } from '.././src/prisma/prisma.service'
 import { AuthDto } from '.././src/auth/dto/auth.dto';
 import { EditUserDto } from 'src/user/dto';
-import { CreateBookmarkDto } from 'src/bookmark/dto';
+import { CreateBookmarkDto, EditBookmarkDto } from 'src/bookmark/dto';
 
 describe('App e2e', () => {
   let app: INestApplication;
@@ -229,7 +229,26 @@ describe('App e2e', () => {
       })
     });
 
-    describe('Edit bookmark by id', () => {});
+    describe('Edit bookmark by id', () => {
+      const dto: EditBookmarkDto = {
+        title: 'K8s for beginners',
+        description: 'Learn how to use k8s'
+      }
+      it('should edit bookmark by id', () => {
+        return pactum
+            .spec()
+            .patch(
+              '/bookmarks/{id}')
+              .withPathParams('id', '$S{bookmarkId}')
+              .withBody(dto)
+              .withHeaders({
+              Authorization: 'Bearer $S{userAt}',
+            })
+            .expectStatus(200)
+            .expectBodyContains(dto.title)
+            .expectBodyContains(dto.description)
+      })
+    });
 
     describe('Delete bookmark by id', () => {});
   });
