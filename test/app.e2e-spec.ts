@@ -83,6 +83,38 @@ describe('App e2e', () => {
     });
 
     describe('Signin', () => {
+
+      it('Should throw an error if email if empty', () => {
+        return pactum
+            .spec()
+            .post(
+              '/auth/signin',
+            ).withBody({
+              password: dto.password
+            })
+            .expectStatus(400)
+      });
+
+      it('Should throw an error if password if empty', () => {
+        return pactum
+            .spec()
+            .post(
+              '/auth/signin',
+            ).withBody({
+              password: dto.email
+            })
+            .expectStatus(400)
+      });
+
+      it('Should throw an error if no value is provided', () => {
+        return pactum
+            .spec()
+            .post(
+              '/auth/sigin',
+            )
+            .expectStatus(404)
+      });
+
       it('Should signin', () => {
         return pactum
             .spec()
