@@ -44,7 +44,8 @@ export class BookmarkService {
     async editBookmarkById(
         userId: number,  
         bookmarkId: number, 
-        dto: EditBookmarkDto){
+        dto: EditBookmarkDto
+    ){
     // get bookmark by id
     const bookmark = await this.prisma.bookmark.findUnique({
         where: {
@@ -64,10 +65,8 @@ export class BookmarkService {
         },
         data: {
             ...dto,
-        }
-    })
-
-
+        },
+    });
     }
 
    
@@ -90,7 +89,7 @@ export class BookmarkService {
     await this.prisma.bookmark.delete({
         where: {
             id: bookmarkId
-        }
-    })
-    }
+        },
+    });
+}
 }
