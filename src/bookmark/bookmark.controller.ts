@@ -28,12 +28,13 @@ export class BookmarkController {
 
     @Patch()
     editBookmarkById(
-        @GetUser('id') userId: number
-        @Body() dto: EditBookmarkDto
+        @GetUser('id') userId: number,
+        @Body() dto: EditBookmarkDto,
     ){}
 
-    @Delete()
+    @Delete('id')
     deleteBookmarkById(
-        @GetUser('id') userId: number
+        @GetUser('id') userId: number,
+        @Param('id', ParseIntPipe) bookmarkId: number
     ){}
 }
