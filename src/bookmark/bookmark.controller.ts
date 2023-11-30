@@ -40,7 +40,7 @@ export class BookmarkController {
         );
     }
 
-    @Patch('id')
+    @Patch(':id')
     editBookmarkById(
         @GetUser('id') userId: number,
         @Param('id', ParseIntPipe) bookmarkId: number,
@@ -54,7 +54,7 @@ export class BookmarkController {
     }
 
     @HttpCode(HttpStatus.NO_CONTENT)
-    @Delete('id')
+    @Delete(':id')
     deleteBookmarkById(
         @GetUser('id') userId: number,
         @Param('id', ParseIntPipe) bookmarkId: number
