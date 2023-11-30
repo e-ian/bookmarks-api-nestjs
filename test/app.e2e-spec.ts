@@ -42,7 +42,7 @@ describe('App e2e', () => {
       password: '123'
     }
     describe('Signup', () => {
-      it('Should throw an error if email if empty', () => {
+      it('Should throw an error if email is empty', () => {
         return pactum
             .spec()
             .post(
@@ -211,7 +211,6 @@ describe('App e2e', () => {
             })
             .expectStatus(200)
             .expectJsonLength(1)
-            .inspect()
       })
     });
 
@@ -227,7 +226,6 @@ describe('App e2e', () => {
             })
             .expectStatus(200)
             .expectBodyContains('$S{bookmarkId}')
-            .inspect()
       })
     });
 
@@ -236,7 +234,7 @@ describe('App e2e', () => {
         title: 'K8s for beginners',
         description: 'Learn how to use k8s'
       }
-      it('should edit bookmark by id', () => {
+      it('should edit a bookmark by id', () => {
         return pactum
             .spec()
             .patch(
@@ -273,10 +271,10 @@ describe('App e2e', () => {
             ).withHeaders({
               Authorization: 'Bearer $S{userAt}',
             })
-            .expectStatus(204)
+            .expectStatus(200)
             .expectJsonLength(0);
 
-      }) 
+      }); 
     });
   });
 });
